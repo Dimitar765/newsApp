@@ -21,12 +21,12 @@ export class AuthService {
 
       delete user.hash;
 
+      console.timeEnd('test');
       return user;
     } catch (error) {
       return { msg: 'user with that username already exist' };
     }
   }
-
   async signIn(dto: AuthDto) {
     const user = await this.prismaService.user.findUnique({
       where: {

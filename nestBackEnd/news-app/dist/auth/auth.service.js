@@ -29,6 +29,7 @@ let AuthService = class AuthService {
                 },
             });
             delete user.hash;
+            console.timeEnd('test');
             return user;
         }
         catch (error) {

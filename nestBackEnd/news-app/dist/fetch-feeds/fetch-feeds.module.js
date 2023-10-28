@@ -6,27 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.FetchFeedsModule = void 0;
 const common_1 = require("@nestjs/common");
-const auth_module_1 = require("./auth/auth.module");
-const prisma_module_1 = require("./prisma/prisma.module");
-const config_1 = require("@nestjs/config");
-const fetch_feeds_module_1 = require("./fetch-feeds/fetch-feeds.module");
-let AppModule = class AppModule {
+const fetch_feeds_service_1 = require("./fetch-feeds.service");
+const fetch_feeds_controller_1 = require("./fetch-feeds.controller");
+let FetchFeedsModule = class FetchFeedsModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.FetchFeedsModule = FetchFeedsModule;
+exports.FetchFeedsModule = FetchFeedsModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            auth_module_1.AuthModule,
-            prisma_module_1.PrismaModule,
-            config_1.ConfigModule.forRoot({
-                isGlobal: true,
-            }),
-            fetch_feeds_module_1.FetchFeedsModule,
-        ],
-        controllers: [],
-        providers: [],
+        providers: [fetch_feeds_service_1.FetchFeedsService],
+        controllers: [fetch_feeds_controller_1.FetchFeedsController]
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], FetchFeedsModule);
+//# sourceMappingURL=fetch-feeds.module.js.map
