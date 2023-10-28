@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -12,7 +15,14 @@ const auth_module_1 = require("./auth/auth.module");
 const prisma_module_1 = require("./prisma/prisma.module");
 const config_1 = require("@nestjs/config");
 const fetch_feeds_module_1 = require("./fetch-feeds/fetch-feeds.module");
+const fetch_feeds_service_1 = require("./fetch-feeds/fetch-feeds.service");
+const serve_news_module_1 = require("./serve-news/serve-news.module");
+const comment_module_1 = require("./comment/comment.module");
 let AppModule = class AppModule {
+    constructor(getData) {
+        this.getData = getData;
+        this.getData.startFetch();
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
@@ -24,9 +34,12 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             fetch_feeds_module_1.FetchFeedsModule,
+            serve_news_module_1.ServeNewsModule,
+            comment_module_1.CommentModule,
         ],
         controllers: [],
-        providers: [],
-    })
+        providers: [fetch_feeds_service_1.FetchFeedsService],
+    }),
+    __metadata("design:paramtypes", [fetch_feeds_service_1.FetchFeedsService])
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

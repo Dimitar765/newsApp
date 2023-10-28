@@ -20,3 +20,24 @@ model User {
   firstName String?
   lastName  String?
 }
+
+model Article {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  content     String?
+  createdAt   DateTime  @default(now())
+  imageUrl    String
+  Comments    Comment[]
+
+  @@map("articles")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  comment   String?
+  articleId Int?
+  article   Article? @relation(fields: [articleId], references: [id])
+
+  @@map("comments")
+}
